@@ -1,0 +1,18 @@
+{
+  "ConnectionStrings": {
+
+<<<<<<< HEAD
+    "db1": "Server=localhost;Database=Hakaton3;Trusted_Connection=True;User ID=employee;Password=Mostar2017;MultipleActiveResultSets=true;TrustServerCertificate=True"
+=======
+    "db1": "Server=localhost;Database=Hakaton2;Trusted_Connection=True;User ID=employee;Password=Mostar2017;MultipleActiveResultSets=true;TrustServerCertificate=True"
+>>>>>>> 0897e8c26822978391c193abf7aa54066769f4f4
+
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}

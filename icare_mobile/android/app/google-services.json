@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "823875045545",
+    "firebase_url": "https://smart-garage-52d7c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "smart-garage-52d7c",
+    "storage_bucket": "smart-garage-52d7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823875045545:android:2461e5a908ad7c2c1101b8",
+        "android_client_info": {
+          "package_name": "com.example.icare_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823875045545-qu1dbdiu15pvegtcd3m897dah556bkqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJi6sptCVjqVFi0I8azLLz6sH3FTHpq0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823875045545-qu1dbdiu15pvegtcd3m897dah556bkqu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "823875045545-a5csgqk0q048qrh94617d7oqlvbk2t6f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smartGarage"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823875045545:android:e3faba4ae76957c01101b8",
+        "android_client_info": {
+          "package_name": "com.example.smart_garage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823875045545-qu1dbdiu15pvegtcd3m897dah556bkqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJi6sptCVjqVFi0I8azLLz6sH3FTHpq0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823875045545-qu1dbdiu15pvegtcd3m897dah556bkqu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "823875045545-a5csgqk0q048qrh94617d7oqlvbk2t6f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smartGarage"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
