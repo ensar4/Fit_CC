@@ -95,8 +95,8 @@ void loop() {
         if (gps.encode(gpsSerial.read())) {
             printData();
             //Serial.println("ddd");
-            Firebase.RTDB.setFloat(&fbdo, "bracelet/lat", lat);
-            Firebase.RTDB.setFloat(&fbdo, "bracelet/lng", lng);
+           // Firebase.RTDB.setDouble(&fbdo, "bracelet/lat", lat);
+           // Firebase.RTDB.setDouble(&fbdo, "bracelet/lng", lng);
         }
     }
   
