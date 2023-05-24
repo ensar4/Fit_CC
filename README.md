@@ -10,9 +10,21 @@ WeCare projekat je namijenjen za skrbnike i porodice koje imaju starog ili boles
 
 Pametna narukvica će imati konekciju na WI-FI te time slati podatke o vitalnim znacima osobe, da li je osoba pala te lokaciju te osobe na online bazu podataka. Sa online baze podataka ti podaci će se prikazivati na mobilnoj aplikaciji jednog ili više skrbnika. Također jedan skrbnik će moći nadgledati više narukvica. 
 
+Korištene tehnologije:
+ - .net framework
+ - flutter
+ - firebase
+ - arduino
+ - sql
+
 # Pametna narukvica
 
 Pametna narukvica je trenutno u verziji prototipa te nema sve funkcionalnosti koje su zamišljene.
+Prototip je rađen koristeći mikrokontorler node MCU8266 te senzora: 
+ - Senzor za otkucaje srca
+ - MPU6050
+ - GPS
+ - 
 Narukvica će moći biti u vise verzija
 Trenutne funkcionalnosti su:
  - Konekcija na WI-FI
