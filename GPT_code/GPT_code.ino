@@ -48,10 +48,15 @@ unsigned long fallStartTime = 0;
 const int sensorPin = A0;                               // A0 is the input pin for the heart rate sensor
 int sensorValue;    
 
-#define WIFI_SSID "LIZDE" 
-#define WIFI_PASSWORD "03022005" 
-#define FIREBASE_AUTH "z3RAeP0USbkfj3r7FZRT4vROEN2BzlPJiksEatmp"
-#define FIREBASE_HOST "https://ioty-3d8de-default-rtdb.firebaseio.com/"  
+//#define WIFI_SSID "LIZDE" 
+//#define WIFI_PASSWORD "03022005" 
+//#define FIREBASE_AUTH "z3RAeP0USbkfj3r7FZRT4vROEN2BzlPJiksEatmp"
+//#define FIREBASE_HOST "https://ioty-3d8de-default-rtdb.firebaseio.com/"  
+
+#define WIFI_SSID "Hollywood_guest"
+//#define WIFI_PASSWORD "12345678"
+#define FIREBASE_AUTH "AIzaSyCRsZI7G7xtDbJSi5sPI9HppNPL2DTr7L4"
+#define FIREBASE_HOST "https://smart-garage-52d7c-default-rtdb.europe-west1.firebasedatabase.app"
 
 FirebaseData fbdo;
 
@@ -63,7 +68,7 @@ void setup() {
   Wire.begin();
   mpu.initialize();
 
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.begin(WIFI_SSID);//, WIFI_PASSWORD
   Serial.println("Connecting to Wi-Fi...");
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -90,8 +95,8 @@ void loop() {
         if (gps.encode(gpsSerial.read())) {
             printData();
             //Serial.println("ddd");
-            Firebase.RTDB.setFloat(&fbdo, "/MPU6050/lat", lat);
-            Firebase.RTDB.setFloat(&fbdo, "/MPU6050/lng", lng);
+            Firebase.RTDB.setFloat(&fbdo, "bracelet/lat", lat);
+            Firebase.RTDB.setFloat(&fbdo, "bracelet/lng", lng);
         }
     }
   
@@ -114,7 +119,7 @@ void loop() {
   } else {
     isFalling = 0;
     Serial.println("Osoba nije pala");
-    Firebase.RTDB.setFloat(&fbdo, "/MPU6050/detektovanPad", 0);
+    Firebase.RTDB.setFloat(&fbdo, "bracelet/detektovanPad", 0);
     Serial.println(accelMagnitude);
   }
 
@@ -123,7 +128,7 @@ void loop() {
     // Nastavi izvršavanje koda
     Serial.println("Prošlo je 30 sekundi od pada");
     // Dodajte dodatne radnje ili logiku ovdje
-      Firebase.RTDB.setFloat(&fbdo, "/MPU6050/detektovanPad", 1);
+      Firebase.RTDB.setFloat(&fbdo, "bracelet/detektovanPad", 1);
     // Resetuj isFalling i fallStartTime
     isFalling = 0;
     fallStartTime = 0;
@@ -131,7 +136,7 @@ void loop() {
 
   Serial.println("Broj otkucaja:");
   Serial.println(sensorValue);
-  Firebase.RTDB.setFloat(&fbdo, "/MPU6050/pulse", sensorValue);
+  Firebase.RTDB.setFloat(&fbdo, "bracelet/pulse", sensorValue);
   delay(1000);  // Prilagodite vrijeme kašnjenja prema potrebama
 
 
