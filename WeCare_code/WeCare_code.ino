@@ -14,12 +14,35 @@ TinyGPSPlus gps;
 SoftwareSerial gpsSerial(D5, D6); // RX, TX
 char buffer[100];
 
-         double lat = gps.location.lat();
-         double lng = gps.location.lng();
+ 
          
+
+
+MPU6050 mpu;
+
+int fallThreshold = 19000;  // Prilagodite vrijednost prema potrebama            //FALL----------
+int isFalling = 0;
+unsigned long fallStartTime = 0;
+                                                                                //PULSE----------
+const int sensorPin = A0;                               // A0 is the input pin for the heart rate sensor
+int sensorValue;    
+
+#define WIFI_SSID "LIZDE" 
+#define WIFI_PASSWORD "03022005" 
+//#define FIREBASE_AUTH "z3RAeP0USbkfj3r7FZRT4vROEN2BzlPJiksEatmp"
+//#define FIREBASE_HOST "https://ioty-3d8de-default-rtdb.firebaseio.com/"  
+
+//#define WIFI_SSID "Hollywood_guest"
+//#define WIFI_PASSWORD "12345678"
+#define FIREBASE_AUTH "AIzaSyCRsZI7G7xtDbJSi5sPI9HppNPL2DTr7L4"
+#define FIREBASE_HOST "https://smart-garage-52d7c-default-rtdb.europe-west1.firebasedatabase.app"
+
+ double lat;
+ double lng;
 void printData() 
 {
-
+         lat = gps.location.lat();
+         lng = gps.location.lng();
         double altitude = gps.altitude.meters();
 
         int year = gps.date.year();
@@ -39,36 +62,17 @@ void printData()
 
 }
 
-MPU6050 mpu;
-
-int fallThreshold = 19000;  // Prilagodite vrijednost prema potrebama            //FALL----------
-int isFalling = 0;
-unsigned long fallStartTime = 0;
-                                                                                //PULSE----------
-const int sensorPin = A0;                               // A0 is the input pin for the heart rate sensor
-int sensorValue;    
-
-//#define WIFI_SSID "LIZDE" 
-//#define WIFI_PASSWORD "03022005" 
-//#define FIREBASE_AUTH "z3RAeP0USbkfj3r7FZRT4vROEN2BzlPJiksEatmp"
-//#define FIREBASE_HOST "https://ioty-3d8de-default-rtdb.firebaseio.com/"  
-
-#define WIFI_SSID "Hollywood_guest"
-//#define WIFI_PASSWORD "12345678"
-#define FIREBASE_AUTH "AIzaSyCRsZI7G7xtDbJSi5sPI9HppNPL2DTr7L4"
-#define FIREBASE_HOST "https://smart-garage-52d7c-default-rtdb.europe-west1.firebasedatabase.app"
-
 FirebaseData fbdo;
 
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   gpsSerial.begin(9600);
 
   Wire.begin();
   mpu.initialize();
 
-  WiFi.begin(WIFI_SSID);//, WIFI_PASSWORD
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);//, WIFI_PASSWORD
   Serial.println("Connecting to Wi-Fi...");
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -95,8 +99,9 @@ void loop() {
         if (gps.encode(gpsSerial.read())) {
             printData();
             //Serial.println("ddd");
-           // Firebase.RTDB.setDouble(&fbdo, "bracelet/lat", lat);
-           // Firebase.RTDB.setDouble(&fbdo, "bracelet/lng", lng);
+            Firebase.RTDB.setDouble(&fbdo, "bracelet/lat", lat);
+            
+            Firebase.RTDB.setDouble(&fbdo, "bracelet/lng", lng);
         }
     }
   
@@ -137,7 +142,7 @@ void loop() {
   Serial.println("Broj otkucaja:");
   Serial.println(sensorValue);
   Firebase.RTDB.setFloat(&fbdo, "bracelet/pulse", sensorValue);
-  delay(1000);  // Prilagodite vrijeme kašnjenja prema potrebama
+  //delay(1000);  // Prilagodite vrijeme kašnjenja prema potrebama
 
 
 
